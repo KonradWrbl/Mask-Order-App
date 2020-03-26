@@ -1,0 +1,55 @@
+import styled from 'styled-components'
+import { ReactComponent as Project } from '../../images/Project.svg'
+
+export const AboutContainer = styled.div`
+    width: 100%;
+    padding: 10vw;
+    background-color: #FBFBFB;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+`
+
+export const ProjectImg = styled(Project)`
+    max-width: 40vw;
+    max-height: 60vh;
+`
+
+export const Info = styled.div`
+    padding: 10px;
+    width: 100%;
+    max-width: 800px;
+`
+
+export const H2 = styled.h2`
+    font-size: 2.2em;
+    text-align: center;
+    display: flex;
+    justify-content: flex-start;
+    position: relative;
+    z-index: 1;
+
+    ::after {
+        content: '';
+        display: block;
+        width: 90px;
+        height: 40px;
+        position:absolute;
+        top: 15px;
+        left: 15px;
+        background-color: #00BFA6;
+        border-radius: 10px;
+        z-index: -1;
+
+    }
+`
+
+export const InfoArea = styled.div`
+    padding: 0 20px;
+    height: 20vw;
+    font-size: 1.3em;
+    white-space: pre-line;
+    overflow: hidden;
+    text-overflow: ellipsis;
+`
