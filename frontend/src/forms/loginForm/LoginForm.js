@@ -1,7 +1,8 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
-import { FieldContainer, StyledForm, ButtonContainer, FieldWrapper, StyledLabel, StyledInput, InputWrapper } from './style';
+import { StyledForm, ButtonContainer } from './style';
 import { FullButton } from '../../components/FullButton';
+import RenderField from '../renderField/RenderField';
 
 
 const validate = values => {
@@ -16,30 +17,13 @@ const validate = values => {
 }
 
 
-const renderField = ({
-    input,
-    label,
-    type,
-    meta: { touched, error, warning }
-  }) => (
-    <FieldWrapper>
-      <StyledLabel>{label}</StyledLabel>
-      <InputWrapper>
-        <StyledInput {...input} placeholder={label} type={type} />
-        {touched &&
-          ((error && <span>{error}</span>) ||
-            (warning && <span>{warning}</span>))}
-      </InputWrapper>
-    </FieldWrapper>
-  )
-
 
 let LoginForm = props => {
-    const { handleSubmit, pristine, reset, submitting } = props
+    const { handleSubmit } = props
     return (
         <StyledForm onSubmit={handleSubmit}>
-            <Field name='login' type='text' component={renderField} label='Login' />
-            <Field name='pass' type='password' component={renderField} label='Hasło' />
+            <Field name='login' type='text' component={RenderField} label='Login' />
+            <Field name='pass' type='password' component={RenderField} label='Hasło' />
             <ButtonContainer>
                 <FullButton typ='submit'>Zaloguj</FullButton>
             </ButtonContainer>
@@ -51,6 +35,6 @@ let LoginForm = props => {
 LoginForm = reduxForm({
     form: 'Login',
     validate,
-  })(LoginForm)
+})(LoginForm)
 
-  export default LoginForm;
+export default LoginForm;

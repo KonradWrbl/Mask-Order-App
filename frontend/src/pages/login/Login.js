@@ -2,6 +2,7 @@ import React from 'react';
 import LoginForm from '../../forms/loginForm/LoginForm';
 import { LoginContainer, LoginWrapper, Title, RegisterWrapper, Text } from './style';
 import { FullButton } from '../../components/FullButton';
+import { Link } from 'react-router-dom';
 
 const Login = () => {
 
@@ -20,7 +21,9 @@ const Login = () => {
                     <Text>
                         Nie posiadasz konta?
                     </Text>
-                    <FullButton>Zarejestruj się</FullButton>
+                    <Link to='/register'>
+                        <FullButton>Zarejestruj się</FullButton>
+                    </Link>
                 </RegisterWrapper>
             </LoginWrapper>
         </LoginContainer>

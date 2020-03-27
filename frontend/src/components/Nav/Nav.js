@@ -6,18 +6,22 @@ import { HashLink as Link } from 'react-router-hash-link';
 
 const Nav = () => (
     <NavWrapper>
-        <NavLogo>
-            LoremIpsum
-        </NavLogo>
+        <Link to='/'>
+            <NavLogo>
+                LoremIpsum
+            </NavLogo>
+        </Link>
         <NavButtons>
             <Link smooth to="#info">
                 <EmptyButton>
                     Info
                 </EmptyButton>
             </Link>
-            <FullButton>
-                Zaloguj się / Zarejestruj się
-            </FullButton>
+            <Link to='/login'>
+                <FullButton>
+                    Zaloguj się / Zarejestruj się
+                </FullButton>
+            </Link>
         </NavButtons>
     </NavWrapper>
 )

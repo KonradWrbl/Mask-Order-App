@@ -1,6 +1,7 @@
 import React from 'react';
 import { MainContainer, Title, MedicImg, H1 } from './style';
 import { FullButton } from '../../components/FullButton'
+import { Link } from 'react-router-dom';
 
 
 const Main = () => {
@@ -8,9 +9,11 @@ const Main = () => {
         <MainContainer>
             <Title>
                 <H1>Lorem ipsum dolor sit amet</H1>
-                <FullButton>
-                    Zaloguj się / Zarejestruj się
-                </FullButton>
+                <Link to='/login'>
+                    <FullButton>
+                        Zaloguj się / Zarejestruj się
+                    </FullButton>
+                </Link>
             </Title>
             <MedicImg/>
         </MainContainer>
