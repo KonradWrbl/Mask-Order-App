@@ -9,11 +9,21 @@ export const AboutContainer = styled.div`
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+
+    @media (max-width: 768px) {
+        flex-direction: column-reverse;
+        padding: 10px;
+    }
 `
 
 export const ProjectImg = styled(Project)`
     max-width: 40vw;
     max-height: 60vh;
+
+    @media (max-width: 768px) {
+        max-width: 90vw;
+        max-height: 60vw;
+    }
 `
 
 export const Info = styled.div`

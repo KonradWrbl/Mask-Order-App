@@ -28,4 +28,8 @@ export const NavLogo = styled.button`
 
 export const NavButtons = styled.div`
     height: 100%;
+
+    @media (max-width: 768px) {
+        display: none;
+    }
 `
