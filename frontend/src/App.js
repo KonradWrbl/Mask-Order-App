@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import GlobalStyle from './theme/GlobalStyle'
 import Nav from './components/Nav/Nav'
 import Base from './pages/base/Base';
+import Login from './pages/login/Login';
 
 function App() {
   return (
@@ -11,21 +12,11 @@ function App() {
       <Router>
         <Nav />
         <Switch>
-          <Route path='/' >
-            <Base />
-          </Route>
-          <Route path='/login' >
-            <Base />
-          </Route>
-          <Route path='/register' >
-            <Base />
-          </Route>
-          <Route path='/order' >
-            <Base />
-          </Route>
-          <Route path='/admin' >
-            <Base />
-          </Route>
+          <Route path='/' component={Base} />
+          <Route path='/login' component={Login}/>
+          <Route path='/register' component={Login}/>
+          <Route path='/order' component={Login}/>
+          <Route path='/admin' component={Login}/>
         </Switch>
       </Router>
     </>
