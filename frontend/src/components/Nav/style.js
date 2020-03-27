@@ -9,7 +9,8 @@ export const NavWrapper = styled.nav`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    background-color: rgba(255,255,255,.9)
+    background-color: rgba(255,255,255,.9);
+    z-index: 900;
 `
 
 export const NavLogo = styled.div`

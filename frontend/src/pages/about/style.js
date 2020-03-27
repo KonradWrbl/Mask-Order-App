@@ -4,7 +4,7 @@ import { ReactComponent as Project } from '../../images/Project.svg'
 export const AboutContainer = styled.div`
     width: 100%;
     padding: 10vw;
-    background-color: #FBFBFB;
+    background-color: #F9F9F9;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -20,6 +20,8 @@ export const Info = styled.div`
     padding: 10px;
     width: 100%;
     max-width: 800px;
+    display: flex;
+    flex-direction: column;
 `
 
 export const H2 = styled.h2`
@@ -34,7 +36,7 @@ export const H2 = styled.h2`
         content: '';
         display: block;
         width: 90px;
-        height: 40px;
+        height: 30px;
         position:absolute;
         top: 15px;
         left: 15px;
@@ -47,9 +49,9 @@ export const H2 = styled.h2`
 
 export const InfoArea = styled.div`
     padding: 0 20px;
-    height: 20vw;
     font-size: 1.3em;
     white-space: pre-line;
     overflow: hidden;
     text-overflow: ellipsis;
+    margin-bottom: 50px;
 `

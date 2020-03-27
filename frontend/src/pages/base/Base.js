@@ -6,7 +6,7 @@ const Base =() => {
     return (
         <>
             <Main />
-            <About id='info'/>
+            <About />
         </>
     )
 }
