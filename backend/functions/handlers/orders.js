@@ -32,7 +32,9 @@ exports.postOneOrder = (req, res) =>{
     db.collection('orders')
         .add(newOrder)
         .then(doc => {
-            res.json({ message: `document ${doc.id} created duccesfully` })
+            const resOrder = newOrder;
+            resOrder.orderId = doc.id;
+            res.json({resOrder})
         })
         .catch(err => {
             res.status(500).json({ error: 'something went wrong'})
