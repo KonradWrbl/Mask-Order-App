@@ -22,7 +22,7 @@ let LoginForm = props => {
     const { handleSubmit } = props
     return (
         <StyledForm onSubmit={handleSubmit}>
-            <Field name='login' type='text' component={RenderField} label='Login' />
+            <Field name='email' type='text' component={RenderField} label='Email' />
             <Field name='pass' type='password' component={RenderField} label='Hasło' />
             <ButtonContainer>
                 <FullButton typ='submit'>Zaloguj</FullButton>
