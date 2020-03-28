@@ -20,7 +20,7 @@ exports.api = functions.region('europe-west2').https.onRequest(app);
 
 exports.createNotificationOnNewOrder = functions.region('europe-west2').firestore.document('/orders/{id}')
     .onCreate(snapshot => {
-        db.doc(`/orders/${snapshot.data().orderId}`).get()
+        return db.doc(`/orders/${snapshot.data().orderId}`).get()
             .then(doc => {
                 if(doc.exists) {
                     return db.doc(`/notifications/${snapshot.id}`).set({
@@ -32,11 +32,7 @@ exports.createNotificationOnNewOrder = functions.region('europe-west2').firestor
                     })
                 }
             })
-            .then(() => {
-                return;
-            })
             .catch(err => {
                 console.error(err);
-                return;
             })
     })
