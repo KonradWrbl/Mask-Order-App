@@ -1,12 +1,17 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import GlobalStyle from './theme/GlobalStyle'
 import Nav from './components/Nav/Nav'
 import Base from './pages/base/Base';
 import Login from './pages/login/Login';
+import Order from './pages/order/Order'
 import Register from './pages//register/Register';
 import jwtDecode from 'jwt-decode'
 import AuthRouter from './utils/AuthRoute';
+import Axios from 'axios';
+import Pane from './pages/pane/Pane';
+
+Axios.defaults.baseURL = 'https://europe-west2-maskorder-adadd.cloudfunctions.net/api'
 
 const token = localStorage.FBIdToken;
 let authenticated;
@@ -14,7 +19,7 @@ if(token) {
   const decodedToken = jwtDecode(token);
   console.log(decodedToken);
   if(decodedToken.exp * 1000 < Date.now()) {
-    window.location.href = '/login'
+    //window.location.href = '/login'
     authenticated = false;
   } else authenticated = true;
 }
@@ -24,13 +29,13 @@ function App() {
     <>
       <GlobalStyle />
       <Router>
-        <Nav authenticated/>
+        <Nav authenticated={authenticated}/>
         <Switch>
           <Route exact path='/' component={Base} />
           <AuthRouter path='/login' component={Login} authenticated={authenticated}/>
           <AuthRouter path='/register' component={Register} authenticated={authenticated}/>
-          <AuthRouter path='/pane' component={Login} authenticated={authenticated}/>
-          <AuthRouter path='/admin' component={Login} authenticated={authenticated}/>
+          <AuthRouter path='/pane' component={Pane} />
+          <AuthRouter path='/order' component={Order} />
         </Switch>
       </Router>
     </>

@@ -1,7 +1,6 @@
 import React from 'react';
 import RegisterForm from '../../forms/registerForm/RegisterForm';
 import { RegisterContainer, RegisterWrapper, Title, LoadingWrapper, Loader, WrongCredentials } from './style';
-import { FullButton } from '../../components/FullButton';
 import { useState } from 'react';
 import Axios from 'axios';
 
@@ -27,6 +26,7 @@ const Login = props => {
             localStorage.setItem('FBIdToken', `Bearer ${res.data.token}`)
             setLoading(false);
             props.history.push('/');
+            window.location.reload()
         }).catch(err => {
             setError(err.response.data)
             setLoading(false)

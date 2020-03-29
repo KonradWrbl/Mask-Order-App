@@ -9,9 +9,18 @@ exports.getAllOrders = (req, res) => {
             data.forEach(doc => {
                 orders.push({
                     orderId: doc.id,
-                    body: doc.data().body,
                     userHandle: doc.data.userHandle,
-                    createdAt: doc.data().createdAt
+                    createdAt: doc.data().createdAt,
+                    visors: doc.data().visors,
+                    frames: doc.data().frames,
+                    forms: doc.data().forms,
+                    PETFilament: doc.data().PETFilament,
+                    PETFoil: doc.data().PETFoil,
+                    unit: doc.data().unit,
+                    unitAdress: doc.data().unitAdress,
+                    contactName: doc.data().contactName,
+                    contactSurname: doc.data().contactSurname,
+                    contactPhone: doc.data().contactPhone,
                 });
             });
             return res.json(orders);
@@ -24,9 +33,19 @@ exports.getAllOrders = (req, res) => {
 
 exports.postOneOrder = (req, res) =>{
     const newOrder = {
-        body: req.body.body,
         createdAt: new Date().toISOString(),
-        userHandle: req.user.handle
+        userHandle: req.user.handle,
+
+        visors: req.body.visors,
+        frames: req.body.frames,
+        forms: req.body.forms,
+        PETFilament: req.body.PETFilament,
+        PETFoil: req.body.PETFoil,
+        unit: req.body.unit,
+        unitAdress: req.body.unitAdress,
+        contactName: req.body.contactName,
+        contactSurname: req.body.contactSurname,
+        contactPhone: req.body.contactPhone,
     }
 
     db.collection('orders')
@@ -41,3 +60,18 @@ exports.postOneOrder = (req, res) =>{
             console.error(err)
         })
 }
+
+        // name: req.user.name,
+        // surname: req.user.surname,
+        // phone: req.user.phone,
+        // email: req.user.email,
+
+        // PETFilament: req.body.PETFilament,
+        // PETFoil: req.body.PETFoil,
+
+        // unit: req.body.unit,
+        // unitAdress: req.body.unitAdress,
+
+        // contactName: req.body.contactName,
+        // contactSurname: req.body.contactSurname,
+        // contactPhone: req.body.contactPhone,

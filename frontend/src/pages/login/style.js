@@ -8,6 +8,9 @@ export const LoginContainer = styled.div`
     justify-content: center;
     align-items: center;
 
+    @media (max-width: 768px) {
+        height: 100%;
+    }
 
 `
 
@@ -23,8 +26,8 @@ export const LoginWrapper = styled.div`
     padding: 30px;
 
     @media (max-width: 768px) {
+        padding-top: 80px;
         width: 100vw;
-        height: 100vh;
         justify-content: center;
     }
 `

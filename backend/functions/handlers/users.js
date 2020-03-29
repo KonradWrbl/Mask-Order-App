@@ -70,8 +70,6 @@ exports.login = (req, res) => {
         password: req.body.password
     }
 
-    cors(req,res, () => {
-
         firebase.auth().signInWithEmailAndPassword(user.email, user.password)
         .then(data => {
             return data.user.getIdToken();
@@ -85,6 +83,5 @@ exports.login = (req, res) => {
                 return res.status(403).json({ general: 'Wrong credentials, please try again' })
             } else return res.status(500).json({ error: err.code });
         })
-    })
 
 }

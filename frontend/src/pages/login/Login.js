@@ -19,9 +19,12 @@ const Login = props => {
             password: values.pass
         }).then(res => {
             console.log(res.data);
-            localStorage.setItem('FBIdToken', `Bearer ${res.data.token}`)
+            const FBIdToken = `Bearer ${res.data.token}`;
+            localStorage.setItem('FBIdToken', FBIdToken)
+            axios.defaults.headers.common['Authorization'] = FBIdToken
             setLoading(false);
             props.history.push('/');
+            window.location.reload()
         }).catch(err => {
             setError(err.response.data)
             setLoading(false)
