@@ -1,47 +1,49 @@
 import React, { useState } from 'react';
 import LoginForm from '../../forms/loginForm/LoginForm';
-import { LoginContainer, LoginWrapper, Title, RegisterWrapper, Text } from './style';
+import { LoginContainer, LoginWrapper, Title, RegisterWrapper, Text, LoadingWrapper, Loader, WrongCredentials } from './style';
 import { FullButton } from '../../components/FullButton';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-const Login = () => {
+const Login = props => {
 
-    const [error, setError] = useState({})
+    const [ error, setError ] = useState('')
+    const[ isLoading, setLoading ] = useState(false)
 
     const submit = values => {
         console.log(values);
+        setLoading(true);
 
-        // axios.post('http://localhost:5000/maskorder-adadd/europe-west2/api/login', {
-        //     email: values.email,
-        //     password: values.pass
-        // }).then(res => {
-        //     console.log(res.data);
-        // }).catch(err => {
-        //     console.log(err);
-        // })
-
-        axios({
-            method: 'post',
-            url: 'https://europe-west2-maskorder-adadd.cloudfunctions.net/api/login',
-            data: {
-                email: values.email,
-                password: values.pass
-            },
-            mode: 'no-cors',
-            headers: {
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Methods': 'POST, GET',
-            }
-          });
+        axios.post('/login', {
+            email: values.email,
+            password: values.pass
+        }).then(res => {
+            console.log(res.data);
+            localStorage.setItem('FBIdToken', `Bearer ${res.data.token}`)
+            setLoading(false);
+            props.history.push('/');
+        }).catch(err => {
+            setError(err.response.data)
+            setLoading(false)
+        })
     }
 
     return (
         <LoginContainer>
+            {isLoading &&
+                <LoadingWrapper>
+                    <Loader>
+                        <div></div>
+                        <div></div>
+                    </Loader>
+                </LoadingWrapper>
+            }
+
             <LoginWrapper>
                 <Title>
                     Zaloguj się
                 </Title>
+                {error !== '' && <WrongCredentials>{error.general}</WrongCredentials>}
                 <LoginForm onSubmit={submit} />
                 <RegisterWrapper>
                     <Text>

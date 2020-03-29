@@ -1,9 +1,13 @@
 const { db } = require('../util/admin')
 const firebase = require('firebase')
 const config = require('../util/config')
+const cors = require('cors')({origin: true});
+
 firebase.initializeApp(config)
 
 exports.signup = (req, res) => {
+    res.set('Access-Control-Allow-Origin', '*')
+
     const newUser = {
         handle: req.body.handle,
         name: req.body.name,
@@ -12,6 +16,8 @@ exports.signup = (req, res) => {
         phone: req.body.phone,
         password: req.body.password,
         confirmPassword: req.body.confirmPassword,
+        canAddUser: false,
+        canCloseOrder: false,
         createdAt: new Date().toISOString()
     }
 
@@ -38,6 +44,8 @@ exports.signup = (req, res) => {
                 surname: newUser.surname,
                 phone: newUser.phone,
                 email: newUser.email,
+                canAddUser: false,
+                canCloseOrder: false,
                 createdAt: new Date().toISOString(),
                 userId
             }
@@ -62,7 +70,9 @@ exports.login = (req, res) => {
         password: req.body.password
     }
 
-    firebase.auth().signInWithEmailAndPassword(user.email, user.password)
+    cors(req,res, () => {
+
+        firebase.auth().signInWithEmailAndPassword(user.email, user.password)
         .then(data => {
             return data.user.getIdToken();
         })
@@ -75,4 +85,6 @@ exports.login = (req, res) => {
                 return res.status(403).json({ general: 'Wrong credentials, please try again' })
             } else return res.status(500).json({ error: err.code });
         })
+    })
+
 }

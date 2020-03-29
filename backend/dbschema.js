@@ -6,10 +6,10 @@ let db = {
             phone: 'phone number',
             email: 'users email',
             password: 'users password',
-            login: 'users login',
             createdAt: '2020-03-28T09:40:54.675Z',
+            userId: 'gfsdhsdhdfdg',
             canAddUser: 1,
-            canCloseRequest: 1
+            canCloseOrder: 1
         }
     ],
     orders: [

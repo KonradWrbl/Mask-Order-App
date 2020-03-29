@@ -30,9 +30,9 @@ let RegisterForm = props => {
     const { handleSubmit  } = props
     return (
         <StyledForm onSubmit={handleSubmit}>
-            <Field name='imię' type='text' component={RenderField} label='Imię' />
-            <Field name='nazwisko' type='text' component={RenderField} label='Nazwisko' />
-            <Field name='login' type='text' component={RenderField} label='Login' />
+            <Field name='name' type='text' component={RenderField} label='Imię' />
+            <Field name='surname' type='text' component={RenderField} label='Nazwisko' />
+            <Field name='phone' type='text' component={RenderField} label='Telefon' />
             <Field name='email' type='email' component={RenderField} label='Adres e-mail' />
             <Field name='pass' type='password' component={RenderField} label='Hasło' />
             <Field name='passApprove' type='password' component={RenderField} label='Powtórz hasło' />

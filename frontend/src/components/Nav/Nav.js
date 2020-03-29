@@ -4,7 +4,7 @@ import { EmptyButton } from '../EmptyButton';
 import { FullButton } from '../FullButton';
 import { HashLink as Link } from 'react-router-hash-link';
 
-const Nav = () => (
+const Nav = ({authenticated}) => (
     <NavWrapper>
         <Link to='/'>
             <NavLogo>
@@ -17,11 +17,19 @@ const Nav = () => (
                     Info
                 </EmptyButton>
             </Link>
-            <Link to='/login'>
-                <FullButton>
-                    Zaloguj się / Zarejestruj się
-                </FullButton>
-            </Link>
+
+            {authenticated ?
+                <Link to='/pane'>
+                    <FullButton>
+                        Panel
+                    </FullButton>
+                </Link> :
+                <Link to='/login'>
+                    <FullButton>
+                        Zaloguj się / Zarejestruj się
+                    </FullButton>
+                </Link>
+            }
         </NavButtons>
     </NavWrapper>
 )
