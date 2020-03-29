@@ -13,7 +13,7 @@ const validate = values => {
         errors.nazwisko = 'Uzupełnij wymagane pole!';
     }
     if (!values.login) {
-        errors.login = 'Uzupełnij wymagane pole!';
+        errors.phone = 'Uzupełnij wymagane pole!';
     }
     if (!values.email) {
         errors.email = 'Uzupełnij wymagane pole!';
@@ -45,7 +45,7 @@ let RegisterForm = props => {
 }
 
 RegisterForm = reduxForm({
-    form: 'Login',
+    form: 'Register',
     validate,
 })(RegisterForm)
 
