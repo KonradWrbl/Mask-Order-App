@@ -12,7 +12,7 @@ const validate = values => {
     if (!values.nazwisko) {
         errors.nazwisko = 'Uzupełnij wymagane pole!';
     }
-    if (!values.login) {
+    if (!values.phone) {
         errors.phone = 'Uzupełnij wymagane pole!';
     }
     if (!values.email) {
