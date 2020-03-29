@@ -22,6 +22,8 @@ const validate = values => {
         errors.pass = 'Uzupełnij wymagane pole!';
     } else if (values.pass !== values.passApprove) {
         errors.passApprove = 'Hasła nie są identyczne'
+    } else if (values.pass.length < 6) {
+        
     }
     return errors;
 }

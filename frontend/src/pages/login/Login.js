@@ -5,28 +5,26 @@ import { FullButton } from '../../components/FullButton';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
+// Redux stuff
+import { connect } from 'react-redux'
+import { loginUser } from '../../redux/actions/userActions'
+
 const Login = props => {
 
     const [ error, setError ] = useState('')
-    const[ isLoading, setLoading ] = useState(false)
 
     const submit = values => {
         console.log(values);
-        setLoading(true);
 
-        axios.post('/login', {
+        const userData = {
             email: values.email,
             password: values.pass
-        }).then(res => {
-            console.log(res.data);
-            localStorage.setItem('FBIdToken', `Bearer ${res.data.token}`)
-            setLoading(false);
-            props.history.push('/');
-        }).catch(err => {
-            setError(err.response.data)
-            setLoading(false)
-        })
+        }
+
+        props.loginUser(userData, props.history)
     }
+
+    const { UI: { isLoading } } = props;
 
     return (
         <LoginContainer>
@@ -59,4 +57,13 @@ const Login = props => {
     )
 }
 
-export default Login;
+const mapStateToProps = state => ({
+    user: state.user,
+    UI: state.UI
+})
+
+const mapActionsToProps = {
+    loginUser
+}
+
+export default connect(mapStateToProps, mapActionsToProps)(Login);
