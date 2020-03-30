@@ -2,7 +2,8 @@ import styled from 'styled-components'
 
 export const LoginContainer = styled.div`
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
+    height: 100%;
     background-color: #cecece;
     display: flex;
     justify-content: center;
@@ -25,6 +26,7 @@ export const LoginWrapper = styled.div`
     justify-content: space-around;
     box-shadow: 0 3px 6px 0 rgba(0,0,0,.16);
     padding: 30px;
+    margin: 100px 0;
 
     @media (max-width: 768px) {
         padding-top: 80px;

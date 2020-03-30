@@ -24,28 +24,29 @@ const Order = props => {
             visors: values.visors,
             frames: values.frames,
             forms: values.forms,
-            PETFilament: values.PETFilament, //in kilograms
-            PETFoil: values.PETFoil, //in m2
-
-            unit: values.unit,
-            unitAdress: values.contactName,
-            contactName: values.name,
+            PETFilament: values.PETFilament,
+            PETFoil: values.PETFoil,
+            unit: values.unitName,
+            unitAdress: values.unitAdress,
+            contactName: values.contactName,
             contactSurname: values.contactSurname,
-            contactPhone: values.contactPhone,
-
+            contactPhone: values.contactPhone
         }
 
-        axios.post('/order', {
-            body: orderData,
+        console.log(orderData);
+
+        const config = {
             headers: {
+                'Authorization': token,
                 'Content-Type': 'application/json',
-                'Authorization': token
             }
-        })
+        }
+
+        axios.post('/order', orderData, config)
         .then(res => {
             console.log(res);
-
-            // props.history.push('/');
+            setLoading(false);
+            props.history.push('/pane');
             // window.location.reload()
         })
         .catch(err => {

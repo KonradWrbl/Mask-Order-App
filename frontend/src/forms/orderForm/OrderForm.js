@@ -10,8 +10,8 @@ const validate = values => {
     if (!values.visors) {
         errors.visors = 'Uzupełnij wymagane pole!';
     }
-    if (!values.frame) {
-        errors.frame = 'Uzupełnij wymagane pole!';
+    if (!values.frames) {
+        errors.frames = 'Uzupełnij wymagane pole!';
     }
     if (!values.forms) {
         errors.forms = 'Uzupełnij wymagane pole!';
@@ -46,9 +46,12 @@ let OrderForm = props => {
     const { handleSubmit } = props
     return (
         <StyledForm onSubmit={handleSubmit}>
+            <Field name='name' type='text' component={RenderField} label='Imię' />
+            <Field name='surname' type='text' component={RenderField} label='Nazwisko' />
+            <Field name='phone' type='text' component={RenderField} label='Numer telefonu' />
             <StyledSpan>Zapotrzebowanie na</StyledSpan>
             <Field name='visors' type='number' component={RenderField} label='Przyłbice' />
-            <Field name='frame' type='number' component={RenderField} label='Wydrukowane ramki do przyłbic' />
+            <Field name='frames' type='number' component={RenderField} label='Wydrukowane ramki do przyłbic' />
             <Field name='forms' type='number' component={RenderField} label='Wycięte formatki z PET (0,5mm)' />
             <Field name='PETFilament' type='number' component={RenderField} label='Filament PET (w kg)' />
             <Field name='PETFoil' type='number' component={RenderField} label='Folie PET (w m2)' />
