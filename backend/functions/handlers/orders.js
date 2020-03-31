@@ -11,6 +11,11 @@ exports.getAllOrders = (req, res) => {
                     orderId: doc.id,
                     userHandle: doc.data.userHandle,
                     createdAt: doc.data().createdAt,
+
+                    name: doc.data().name,
+                    surname: doc.data().surname,
+                    phone: doc.data().phone,
+
                     visors: doc.data().visors,
                     frames: doc.data().frames,
                     forms: doc.data().forms,
@@ -21,6 +26,7 @@ exports.getAllOrders = (req, res) => {
                     contactName: doc.data().contactName,
                     contactSurname: doc.data().contactSurname,
                     contactPhone: doc.data().contactPhone,
+                    done: doc.data().done
                 });
             });
             return res.json(orders);
@@ -33,8 +39,13 @@ exports.getAllOrders = (req, res) => {
 
 exports.postOneOrder = (req, res) =>{
     const newOrder = {
-        createdAt: new Date().toISOString(),
+        createdAt: new Date().toUTCString(),
         userHandle: req.user.handle,
+        done: false,
+
+        name: req.body.name,
+        surname: req.body.surname,
+        phone: req.body.phone,
 
         visors: req.body.visors,
         frames: req.body.frames,
@@ -60,6 +71,20 @@ exports.postOneOrder = (req, res) =>{
             console.error(err)
         })
 }
+
+exports.setOrderStatus = (req, res) => {
+  let id = req.body.id;
+
+  db.doc(`/orders/${id}`)
+    .update({done: true})
+    .then(() => {
+      return res.json({ message: 'Status update succesfully' });
+    })
+    .catch((err) => {
+      console.error(err);
+      return res.status(500).json({ error: err.code });
+    });
+};
 
         // name: req.user.name,
         // surname: req.user.surname,

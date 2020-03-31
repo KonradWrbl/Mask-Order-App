@@ -4,8 +4,8 @@ const cors = require('cors')
 
 app.use(cors())
 
-const { getAllOrders, postOneOrder } = require('./handlers/orders')
-const { signup, login } = require('./handlers/users')
+const { getAllOrders, postOneOrder, setOrderStatus } = require('./handlers/orders')
+const { signup, login, getAuthenticatedUser, getAuthenticatedAccountType, getUserOrders } = require('./handlers/users')
 
 const FBAuth = require('./util/fbAuth')
 
@@ -14,6 +14,10 @@ const { db } = require('./util/admin')
 //Orders routes
 app.get('/orders', getAllOrders)
 app.post('/order', FBAuth, postOneOrder)
+app.get('/details', FBAuth, getAuthenticatedUser)
+app.get('/type', FBAuth, getAuthenticatedAccountType)
+app.get('/userorders', FBAuth, getUserOrders)
+app.post('/setstatus', FBAuth, setOrderStatus)
 
 //Users routes
 app.post('/signup', signup)

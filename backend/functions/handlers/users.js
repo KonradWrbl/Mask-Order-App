@@ -85,3 +85,64 @@ exports.login = (req, res) => {
     })
 
 }
+
+
+exports.getAuthenticatedUser = (req, res) => {
+    let userData = {};
+    db.doc(`/users/${req.user.handle}`).get()
+        .then(doc => {
+            if(doc.exists) {
+                userData.credentails = doc.data().name;
+                return db.collection('orders').where('userHandle', '==', req.user.handle).get();
+            }
+        })
+        .then(data =>{
+            userData.orders = [];
+            data.forEach(doc => {
+                userData.orders.push(doc.data());
+            })
+            return res.json(userData)
+        })
+        .catch(err => {
+            console.error(err)
+            return res.status(500).json({ error: err.code })
+        })
+}
+
+exports.getAuthenticatedAccountType = (req, res) => {
+    let type;
+    db.doc(`/users/${req.user.handle}`).get()
+        .then(doc => {
+            if (doc.exists) {
+                type = doc.data().canAddUser
+                return res.json(type)
+            }
+        })
+        .catch(err => {
+            console.error(err)
+            return res.status(500).json({ error: err.code })
+        })
+}
+
+exports.getUserOrders = (req, res) => {
+    let orders = [];
+    db.doc(`/users/${req.user.handle}`).get()
+        .then(doc => {
+            if(doc.exists) {
+                return db
+                    .collection('orders')
+                    .where('userHandle', '==', req.user.handle)
+                    .get();
+            }
+        })
+        .then(data => {
+            data.forEach(doc => {
+                orders.push(doc.data())
+            })
+            return res.json(orders)
+        })
+        .catch(err => {
+            console.error(err)
+            return res.status(500).json({ error: err.code })
+        })
+}
